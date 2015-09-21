@@ -793,6 +793,7 @@ class ModelSaleOrder extends Model{
 						 o.order_status_id,
 						 o.date_added,
 						 o.total,
+						 o.order_point,
 						 o.currency,
 						 o.value";
 		}

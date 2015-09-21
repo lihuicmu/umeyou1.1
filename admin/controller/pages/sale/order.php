@@ -128,6 +128,7 @@ class ControllerPagesSaleOrder extends AController{
 				$this->language->get('column_status'),
 				$this->language->get('column_date_added'),
 				$this->language->get('column_total'),
+				$this->language->get('Total Order Points'),
 		);
 		$grid_settings['colModel'] = array(
 				array('name'  => 'order_id',
@@ -152,6 +153,10 @@ class ControllerPagesSaleOrder extends AController{
 				      'index' => 'total',
 				      'width' => 90,
 				      'align' => 'center'),
+				array('name'  => 'totalorderpoint',
+						'index' => 'totalorderpoint',
+						'width' => 90,
+						'align' => 'center'),
 		);
 
 		$this->loadModel('localisation/order_status');

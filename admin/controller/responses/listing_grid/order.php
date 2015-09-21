@@ -120,6 +120,7 @@ class ControllerResponsesListingGridOrder extends AController {
 				)),
 				dateISO2Display($result[ 'date_added' ], $this->language->get('date_format_short')),
 				$this->currency->format($result[ 'total' ], $result[ 'currency' ], $result[ 'value' ]),
+				$result[ 'order_point' ],
 			);
 			$i++;
 		}
