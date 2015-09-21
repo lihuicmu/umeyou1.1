@@ -100,6 +100,10 @@ class ControllerResponsesListingGridCustomer extends AController {
 					'value' => $result[ 'approved' ],
 					'options' => $approved,
 				)),
+				$this->html->buildInput(array(
+					'name' => 'available_point[' . $result[ 'customer_id' ] . ']',
+					'value' => $result[ 'available_point' ],
+				)),
 				($result[ 'orders_count' ] > 0 ?
 				$this->html->buildButton(array(
 					'name' => 'view orders',
@@ -164,9 +168,18 @@ class ControllerResponsesListingGridCustomer extends AController {
 							$this->_sendMail($id, $this->request->post[ 'approved' ][ $id ]);
 						} else {
 							return $error->toJSONResponse('VALIDATION_ERROR_406',
-																				array('error_text' => $err,
-																					'reset_value' => false
-																				));
+								array('error_text' => $err,
+									'reset_value' => false
+								));
+						}
+						$err = $this->_validateForm('available_point', $this->request->post[ 'available_point' ][ $id ], $id);
+						if (!$err) {
+							$this->model_sale_customer->editCustomerField($id, 'available_point', $this->request->post[ 'available_point' ][ $id ]);
+						} else {
+							return $error->toJSONResponse('VALIDATION_ERROR_406',
+								array('error_text' => $err,
+									'reset_value' => false
+								));
 						}
 					}
 				break;
@@ -326,6 +339,11 @@ class ControllerResponsesListingGridCustomer extends AController {
 			case 'zone_id':
 				if ( empty($value) || $value=='FALSE' ) {
 					$this->error = $this->language->get('error_zone');
+				}
+				break;
+			case 'available_point':
+				if ( empty($value) || $value=='FALSE' ) {
+					$this->error = $this->language->get('error_availablepoint');
 				}
 				break;
 		}

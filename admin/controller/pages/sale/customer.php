@@ -169,6 +169,7 @@ class ControllerPagesSaleCustomer extends AController {
 				$this->language->get('column_group'),
 				$this->language->get('column_status'),
 				$this->language->get('column_approved'),
+				$this->language->get('Avail Points'),
 				$this->language->get('text_order'),
 		);
 		$grid_settings['colModel'] = array(
@@ -192,6 +193,11 @@ class ControllerPagesSaleCustomer extends AController {
 						'search' => false),
 				array('name' => 'approved',
 						'index' => 'approved',
+						'width' => 110,
+						'align' => 'center',
+						'search' => false),
+				array('name' => 'availpoint',
+						'index' => 'availpoint',
 						'width' => 110,
 						'align' => 'center',
 						'search' => false),
