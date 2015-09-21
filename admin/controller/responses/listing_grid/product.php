@@ -104,6 +104,10 @@ class ControllerResponsesListingGridProduct extends AController {
 					'value' => $result[ 'status' ],
 					'style' => 'btn_switch',
 				)),
+				$this->html->buildInput(array(
+					'name' => 'point[' . $result[ 'product_id' ] . ']',
+					'value' => $result[ 'point' ],
+				)),
 			);
 			$i++;
 		}
@@ -217,7 +221,7 @@ class ControllerResponsesListingGridProduct extends AController {
 		}
 
 		//request sent from jGrid. ID is key of array
-		$fields = array( 'product_description', 'model', 'price', 'call_to_order', 'quantity', 'status' );
+		$fields = array( 'product_description', 'model', 'price', 'call_to_order', 'quantity', 'status', 'point');
 		foreach ($fields as $f) {
 			if (isset($this->request->post[ $f ]))
 				foreach ($this->request->post[ $f ] as $k => $v) {

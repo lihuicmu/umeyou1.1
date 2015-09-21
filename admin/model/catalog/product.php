@@ -216,6 +216,7 @@ class ModelCatalogProduct extends Model{
 				"shipping_price",
 				"call_to_order",
 				"price",
+				"point",
 				"cost",
 				"weight",
 				"weight_class_id",
