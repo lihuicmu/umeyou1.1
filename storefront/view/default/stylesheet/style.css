@@ -1472,7 +1472,17 @@ ul.rate li.off {
 	visibility: hidden;
 }
 
+.total-point-holder {
+	display: none;
+	visibility: hidden;
+}
+
 .total-price {
+	font-size: 18px;
+	color: #00A1CB;
+}
+
+.total-point {
 	font-size: 18px;
 	color: #00A1CB;
 }
