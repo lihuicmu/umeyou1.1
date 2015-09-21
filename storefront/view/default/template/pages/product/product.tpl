@@ -145,6 +145,13 @@
 											<span class="total-price"></span>
 										</label>
 									</div>
+
+									<div class="form-group mt20 mb10 total-point-holder">
+										<label class="control-label">Total Point:
+											<span class="total-point"></span>
+										</label>
+									</div>
+
 									<?php }?>
 
 									<?php if($product_info['free_shipping'] && $product_info['shipping_price'] <= 0 ) { ?>
@@ -396,6 +403,7 @@
 		}
 
 		display_total_price();
+		display_total_point();
 
 		$('#current_reviews .pagination a').on('click', function () {
 			$('#current_reviews').slideUp('slow');
@@ -424,10 +432,12 @@
 	$('input[name^=\'option\'], select[name^=\'option\']').change(function () {
 		load_option_images($(this).val());
 		display_total_price();
+		display_total_point()
 	});
 
 	$('input[name=quantity]').keyup(function () {
 		display_total_price();
+		display_total_point()
 	});
 
 
@@ -504,6 +514,25 @@
 					$('.total-price-holder').show();
 					$('.total-price-holder').css('visibility', 'visible');
 					$('.total-price').html(data.total);
+				}
+			}
+		});
+
+	}
+
+	function display_total_point() {
+
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo $calc_total_url;?>',
+			dataType: 'json',
+			data: $("#product").serialize(),
+
+			success: function (data) {
+				if (data.total) {
+					$('.total-point-holder').show();
+					$('.total-point-holder').css('visibility', 'visible');
+					$('.total-point').html(data.total_point);
 				}
 			}
 		});

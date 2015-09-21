@@ -270,6 +270,9 @@ class ControllerResponsesProductProduct extends AController {
 			);
 			$output['total'] = $this->currency->format($output['total']);
 			$output['price'] = $this->currency->format($output['price']);
+
+			$output['point'] = $result['point'];
+			$output['total_point'] = $result['total_point'];
 		}
 
 		//init controller data
