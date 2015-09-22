@@ -136,6 +136,7 @@ class ModelCheckoutOrder extends Model {
 								telephone = '" . $this->db->escape($data['telephone']) . "',
 								fax = '" . $this->db->escape($data['fax']) . "',
 								total = '" . (float)$data['total'] . "',
+								order_point = '" . (int)$data['order_point'] . "',
 								language_id = '" . (int)$data['language_id'] . "',
 								currency = '" . $this->db->escape($data['currency']) . "',
 								currency_id = '" . (int)$data['currency_id'] . "',
@@ -185,6 +186,7 @@ class ModelCheckoutOrder extends Model {
 								model = '" . $this->db->escape($product['model']) . "',
 								price = '" . (float)$product['price'] . "',
 								total = '" . (float)$product['total'] . "',
+								total_point = '" . (float)$product['total_point'] . "',
 								tax = '" . (float)$product['tax'] . "',
 								quantity = '" . (int)$product['quantity'] . "',
 								subtract = '" . (int)$product['stock'] . "'");

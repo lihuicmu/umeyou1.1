@@ -101,6 +101,8 @@ class AOrder {
 
 		$total_data = array();
 		$total = 0;
+		$total_point =0;
+		$total_point+= $this->cart->getSubTotalPoint();
 		$taxes = $this->cart->getTaxes();
 		 
 		$this->load->model('checkout/extension');
@@ -293,6 +295,7 @@ class AOrder {
 				'quantity'   => $product['quantity'], 
 				'price'      => $product['price'],
         		'total'      => $product['total'],
+				'total_point' => $product['total_point'],
 				'tax'        => $this->tax->calcTotalTaxAmount($product['total'],$product['tax_class_id']),
 				'stock'      => $product['stock'],
 				'sku'        => $product['sku']
@@ -303,6 +306,7 @@ class AOrder {
 		$order_info['totals'] = $total_data;
 		$order_info['comment'] = $indata['comment'];
 		$order_info['total'] = $total;
+		$order_info['order_point'] = $total_point;
 		$order_info['language_id'] = $this->config->get('storefront_language_id');
 		$order_info['currency_id'] = $this->currency->getId();
 		$order_info['currency'] = $this->currency->getCode();

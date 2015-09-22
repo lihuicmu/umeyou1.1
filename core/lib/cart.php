@@ -51,6 +51,10 @@ class ACart {
 	 */
   	private $sub_total;
 	/**
+	 * @var int
+	 */
+	private $sub_total_point;
+	/**
 	 * @var array
 	 */
   	private $taxes = array();
@@ -611,7 +615,22 @@ class ACart {
 
 		return $this->sub_total;
   	}
-	
+
+
+	public function getSubTotalPoint( $recalculate = false) {
+		#check if value already set
+		if ( has_value($this->sub_total_point) && !$recalculate) {
+			return $this->sub_total_point;
+		}
+
+		$this->sub_total_point = 0.0;
+		$products = $this->getProducts();
+		foreach ($products as $product) {
+			$this->sub_total_point += $product['total_point'];
+		}
+
+		return $this->sub_total_point;
+	}
 	/**
 	* candidate to be depricated
 	* @return array

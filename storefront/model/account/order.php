@@ -128,6 +128,7 @@ class ModelAccountOrder extends Model {
 				'payment_method'          => $order_row['payment_method'],
 				'comment'                 => $order_row['comment'],
 				'total'                   => $order_row['total'],
+				'order_point'            => $order_row['order_point'],
 				'order_status_id'         => $order_row['order_status_id'],
 				'language_id'             => $order_row['language_id'],
 				'currency_id'             => $order_row['currency_id'],
@@ -160,7 +161,8 @@ class ModelAccountOrder extends Model {
 										 	o.lastname, 
 										 	os.name as status, 
 										 	o.date_added, 
-										 	o.total, 
+										 	o.total,
+										 	o.order_point,
 										 	o.currency, 
 										 	o.value 	 	
 								   FROM `" . $this->db->table("orders") . "` o 
