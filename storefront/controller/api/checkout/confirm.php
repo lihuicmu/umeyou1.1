@@ -32,8 +32,14 @@ class ControllerApiCheckoutConfirm extends AControllerAPI {
 		if (!$this->customer->isLoggedWithToken( $request['token'] )) {
 			$this->rest->sendResponse(401, array( 'error' => 'Not logged in or Login attempt failed!' ) );
 			return null;
-    	} 
-    	
+    	}
+
+		if ($this->cart->getSubTotalPoint()>0) {
+			$this->rest->sendResponse(401, array( 'error' => 'No points enough' ) );
+			return null;
+		}
+		//$this->customer->getAvailPoint()<1000)
+
 		if (!$this->cart->hasProducts()) {
 			//No products in the cart.
 			$this->rest->sendResponse(200, array('status' => 2, 'error' => 'Nothing in the cart!' ) );
