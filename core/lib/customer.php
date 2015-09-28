@@ -401,7 +401,7 @@ final class ACustomer{
 		$availpoint = $this->cache->get($cache_name);
 		if(is_null($availpoint)){
 			$query = $this->db->query("SELECT available_point as availpoint
-										FROM " . $this->db->table("customer") . "
+										FROM " . $this->db->table("customers") . "
 										WHERE customer_id = '" . (int)$this->getId() . "'");
 			$availpoint = $query->row['availpoint'];
 			$this->cache->set($cache_name, $availpoint);
