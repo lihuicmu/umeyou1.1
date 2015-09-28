@@ -294,6 +294,8 @@ class ControllerPagesCheckoutCart extends AController {
           			'stock'    => $result['stock'],
 					'price'    => $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax'))),
 					'total'    => $this->currency->format($this->tax->calculate($result['total'], $result['tax_class_id'], $this->config->get('config_tax'))),
+					'point'    => $result['point'],
+					'total_point' => $result['total_point'],
 					'href'     => $this->html->getSEOURL($product_rt, '&key='.$result['key'],true)
         		);
       		}
@@ -315,10 +317,10 @@ class ControllerPagesCheckoutCart extends AController {
 			} else {
 				$this->data['weight'] = FALSE;
 			}
-			
-      		$display_totals = $this->cart->buildTotalDisplay();      		
-            $this->data['totals'] = $display_totals['total_data'];;
-			
+
+      		$display_totals = $this->cart->buildTotalDisplay();
+            $this->data['totals'] = $display_totals['total_data'];
+
 			if (isset($this->session->data['redirect'])) {
 				$this->data['continue'] = str_replace('&amp;','&',$this->session->data['redirect']);
 				unset($this->session->data['redirect']);

@@ -22,21 +22,18 @@ if (! defined ( 'DIR_CORE' )) {
 }
 class ModelTotalTotalPoint extends Model {
     public function getTotal(&$total_data, &$total,&$total_point, &$taxes, &$cust_data) {
-        if ($this->config->get('total_point_status')) {
-            $this->load->language('total/total_point');
-            $this->load->model('localisation/currency');
+          $this->load->language('total/total_point');
+          $this->load->model('localisation/currency');
 
             $total_data[] = array(
                 'id'	     => 'total_point',
                 'title'      => $this->language->get('text_total_point'),
-                'text'       => $this->currency->format(max(0,$total)),
-                'value'      => max(0,$total),
-                'sort_order' => 1000,
+                'text'       => $this->cart->getSubTotalPoint(),
+                'value'      => $this->cart->getSubTotalPoint(),
+                'sort_order' => $this->config->get('total_point_sort_order'),
                 'total_type' => $this->config->get('total_point_total_type')
             );
-
-            $total_point += $this->cart->getSubTotalPoint();
+           // $total_point += $this->cart->getsubtotalpoint();
         }
-    }
 }
 ?>

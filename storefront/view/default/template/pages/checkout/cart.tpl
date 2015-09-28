@@ -33,6 +33,7 @@ echo $form['form_open'];
 				<th class="align_right"><?php echo $column_price; ?></th>
 				<th class="align_center"><?php echo $column_quantity; ?></th>
 				<th class="align_right"><?php echo $column_total; ?></th>
+				<th class="align_right">Points</th>
 				<th class="align_center"><?php echo $column_remove; ?></th>
 			</tr>
 			<?php foreach ($products as $product) { ?>
@@ -57,6 +58,7 @@ echo $form['form_open'];
 						<div class="input-group input-group-sm"><?php echo $product['quantity']; ?></div>
 					</td>
 					<td class="align_right"><?php echo $product['total']; ?></td>
+					<td class="align_right"><?php echo $product['total_point']; ?></td>
 					<td class="align_center">
 						<a href="<?php echo $product['remove_url']; ?>" class="btn btn-sm btn-default"><i class="fa fa-trash-o fa-fw"></i></a>
 					</td>
@@ -288,6 +290,7 @@ echo $form['form_open'];
 							html += '<td><span class="extra bold ' + grand_total + '">' + data.totals[i].title + '</span></td>';
 							html += '<td><span class="bold ' + grand_total + '">' + data.totals[i].text + '</span></td>';
 							html += '</tr>';
+
 						}
 						$('.cart-info.totals table#totals_table').html(html);
 					}
