@@ -21,7 +21,7 @@ if (! defined ( 'DIR_CORE' )) {
     header ( 'Location: static_pages/' );
 }
 class ModelTotalTotalPoint extends Model {
-    public function getTotal(&$total_data, &$total,&$total_point, &$taxes, &$cust_data) {
+    public function getTotal(&$total_data, &$total, &$taxes, &$cust_data) {
           $this->load->language('total/total_point');
           $this->load->model('localisation/currency');
 
@@ -33,7 +33,6 @@ class ModelTotalTotalPoint extends Model {
                 'sort_order' => $this->config->get('total_point_sort_order'),
                 'total_type' => $this->config->get('total_point_total_type')
             );
-           // $total_point += $this->cart->getsubtotalpoint();
         }
 }
 ?>
