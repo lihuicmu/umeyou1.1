@@ -38,6 +38,7 @@ class ControllerPagesCheckoutConfirm extends AController {
 		$shp_address_rt = 'checkout/address/shipping';				
 		$confirm_rt = 'checkout/confirm';
 		$sucess_rt = 'checkout/success';
+		$no_enough_point = 'error/no_enough_point';
 		$product_rt = 'product/product';		
 		if($this->config->get('embed_mode') == true){
 			$cart_rt = 'r/checkout/cart/embed';
@@ -45,8 +46,15 @@ class ControllerPagesCheckoutConfirm extends AController {
 		
 	   	if (!$this->cart->hasProducts() || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 	  		$this->redirect($this->html->getSecureURL($cart_rt));
-    	}		
-		
+    	}
+
+		$available_point = $this->customer->getAvailPoint();
+		$total_points = $this->cart->getSubTotalPoint();
+		if (($available_point-$total_points)<0) {
+			$this->redirect($this->html->getSecureURL($no_enough_point));
+			//return null;
+		}
+
 		//validate if order min/max are met
 		if (!$this->cart->hasMinRequirement() || !$this->cart->hasMaxRequirement()) {
 			$this->redirect($this->html->getSecureURL($cart_rt));

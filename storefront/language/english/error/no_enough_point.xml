@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<definitions>
+    <definition>
+        <key>heading_title</key>
+        <value><![CDATA[No Enough Points]]></value>
+    </definition>
+    <definition>
+        <key>text_error</key>
+        <value><![CDATA[You account available points are lower then total points of this order. Order cannot be generated.]]></value>
+    </definition>
+</definitions>
